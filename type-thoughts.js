@@ -50,6 +50,22 @@ document.addEventListener('DOMContentLoaded', function () {
         return color;
     }
 
+    function fadeWord(span, speed) {
+        // Fade starts after 30 seconds
+        const fadeDelay = 30000;
+        // Fade duration: min 2s, max 20s, based on speed (ms between words)
+        // Fast speed = short fade, slow speed = long fade
+        const minFade = 2000, maxFade = 20000;
+        let fadeDuration = Math.max(minFade, Math.min(maxFade, maxFade - (speed - 100)));
+        setTimeout(() => {
+            span.style.transition = `opacity ${fadeDuration}ms linear`;
+            span.style.opacity = 0;
+            setTimeout(() => {
+                if (span.parentNode) span.parentNode.removeChild(span);
+            }, fadeDuration + 500);
+        }, fadeDelay);
+    }
+
     input.addEventListener('keydown', function (e) {
         if (e.key === ' ' || e.key === 'Enter') {
             const value = input.value.trim();
@@ -76,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 span.style.top = pos.y + 'px';
                 span.style.color = currentColor;
                 wordsDiv.appendChild(span);
+                fadeWord(span, speed);
                 lastPos = pos;
                 lastWord = word;
                 wordCount++;
