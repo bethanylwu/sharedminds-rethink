@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const w = window.innerWidth;
         const h = window.innerHeight - 120;
         return {
-            x: Math.max(Math.random(), 0.1) * (w - 100),
-            y: Math.max(Math.random(), 0.2) * (h - 30)
+            x: Math.max(Math.random(), 0.2) * (w - 100),
+            y: Math.max(Math.random(), 0.3) * (h - 30)
         };
     }
 
